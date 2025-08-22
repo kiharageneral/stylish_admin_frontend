@@ -246,8 +246,3 @@ CORS_ALLOWED_METHODS = [
 
 # CORS preflight cache
 CORS_PREFLIGHT_MAX_AGE = 86400
-
-
-
-
-

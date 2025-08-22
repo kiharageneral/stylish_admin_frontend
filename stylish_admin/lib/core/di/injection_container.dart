@@ -15,6 +15,35 @@ import 'package:stylish_admin/features/auth/data/repositories/auth_repository_im
 import 'package:stylish_admin/features/auth/domain/repositories/auth_repository.dart';
 import 'package:stylish_admin/features/auth/domain/usecase/auth_usecases.dart';
 import 'package:stylish_admin/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:stylish_admin/features/category/data/datasources/categories_remote_datasource.dart';
+import 'package:stylish_admin/features/category/data/repositories/category_repository_impl.dart';
+import 'package:stylish_admin/features/category/domain/repositories/category_repository.dart';
+import 'package:stylish_admin/features/category/domain/usecases/create_categories.dart';
+import 'package:stylish_admin/features/category/domain/usecases/delete_categories.dart';
+import 'package:stylish_admin/features/category/domain/usecases/get_categories.dart';
+import 'package:stylish_admin/features/category/domain/usecases/update_categories.dart';
+import 'package:stylish_admin/features/category/presentation/bloc/category_bloc.dart';
+
+import 'package:stylish_admin/features/products/data/datasources/product_remote_datasource.dart';
+import 'package:stylish_admin/features/products/data/repositories/product_repository_impl.dart';
+import 'package:stylish_admin/features/products/domain/repositories/product_repository.dart';
+import 'package:stylish_admin/features/products/domain/usecases/get_product_filters_usecase.dart';
+import 'package:stylish_admin/features/products/domain/usecases/product_usecase.dart';
+import 'package:stylish_admin/features/products/presentation/bloc/product_details/product_details_bloc.dart';
+import 'package:stylish_admin/features/products/presentation/bloc/product_list/product_list_bloc.dart';
+import 'package:stylish_admin/features/variations/data/datasources/variant_remote_datsource.dart';
+import 'package:stylish_admin/features/variations/data/repositories/variant_repository_impl.dart';
+import 'package:stylish_admin/features/variations/domain/repositories/variant_repository.dart';
+import 'package:stylish_admin/features/variations/domain/usecases/create_product_variant.dart';
+import 'package:stylish_admin/features/variations/domain/usecases/delete_product_variant.dart';
+import 'package:stylish_admin/features/variations/domain/usecases/distribution_use_case.dart';
+import 'package:stylish_admin/features/variations/domain/usecases/get_product_variants.dart';
+import 'package:stylish_admin/features/variations/domain/usecases/manage_product_variants.dart';
+import 'package:stylish_admin/features/variations/domain/usecases/update_product_variants.dart';
+import 'package:stylish_admin/features/variations/presentation/bloc/product_variant_bloc.dart';
+
+
+
 final sl = GetIt.instance;
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -23,7 +52,13 @@ Future<void> init() async {
   await _initCoreServices();
   // Auth components
   await _initAuth();
- 
+  // Product components
+  _initProductFeature();
+  // Category feature
+  _initCategories();
+  // Product variants
+  _initProductVariantsFeature();
+
 }
 
 Future<void> _initCoreServices() async {
@@ -94,4 +129,118 @@ Future<void> _initAuth() async {
   sl.registerLazySingleton(() => GetCurrentUserUsecase(sl<AuthRepository>()));
   sl.registerLazySingleton(() => RefreshTokensUseCase(sl<AuthRepository>()));
   sl.registerLazySingleton(() => ValidateTokenUseCase(sl<AuthRepository>()));
+}
+
+void _initProductFeature() {
+  // Use cases
+  sl.registerLazySingleton(() => GetProductByIdUsecase(sl()));
+  sl.registerLazySingleton(() => CreateProductUsecase(sl()));
+  sl.registerLazySingleton(() => UpdateProductUsecase(sl()));
+  sl.registerLazySingleton(() => DeleteProductUsecase(sl()));
+  sl.registerLazySingleton(() => UpdateProductStock(sl()));
+  sl.registerLazySingleton(() => UpdateProductPrice(sl()));
+  sl.registerLazySingleton(() => ToggleProductStatus(sl()));
+  sl.registerLazySingleton(() => DeleteProductImageUsecase(sl()));
+  sl.registerLazySingleton(() => BulkDeleteUsecase(sl()));
+  sl.registerLazySingleton(() => GetProductCategoriesUsecase(sl()));
+  sl.registerLazySingleton(() => GetProductFiltersUsecase(sl()));
+  sl.registerLazySingleton(() => UpdateProductProfitMargin(sl()));
+  sl.registerLazySingleton(() => GetProductsPaginated(sl()));
+  sl.registerLazySingleton(() => ManagProductImages(sl()));
+
+  // bloc
+  sl.registerFactory(
+    () => ProductDetailBloc(
+      getProductById: sl(),
+      createProduct: sl(),
+      updateProduct: sl(),
+      deleteProduct: sl(),
+      updateProductStock: sl(),
+      updateProductPrice: sl(),
+      updateProductProfitMargin: sl(),
+      deleteProductImage: sl(),
+      managProductImages: sl(),
+    ),
+  );
+  sl.registerFactory(
+    () => ProductsListBloc(
+      getProductsPaginated: sl(),
+      bulkDeleteProducts: sl(),
+
+      getProductCategories: sl(),
+      getProductFilters: sl(),
+      toggleProductStatus: sl(),
+    ),
+  );
+
+  // Repository
+  sl.registerLazySingleton<ProductRepository>(
+    () => ProductRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<ProductRemoteDatasource>(
+    () => ProductRemoteDataSourceImpl(client: sl()),
+  );
+}
+
+void _initCategories() {
+  // Data sources
+  sl.registerLazySingleton<CategoryRemoteDataSource>(
+    () => CategoryRemoteDataSourceImpl(client: sl()),
+  );
+
+  // Repository
+  sl.registerLazySingleton<CategoryRepository>(
+    () => CategoryRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()),
+  );
+
+  // Use cases
+  sl.registerLazySingleton(() => GetCategories(sl()));
+  sl.registerLazySingleton(() => CreateCategory(sl()));
+  sl.registerLazySingleton(() => DeleteCategory(sl()));
+  sl.registerLazySingleton(() => UpdateCategory(sl()));
+
+  // Bloc
+  sl.registerFactory(
+    () => CategoryBloc(
+      getCategories: sl(),
+      createCategory: sl(),
+      deleteCategory: sl(),
+      updateCategory: sl(),
+    ),
+  );
+}
+
+void _initProductVariantsFeature() {
+  //usecases
+  sl.registerLazySingleton(() => CreateProductVariant(sl()));
+  sl.registerLazySingleton(() => UpdateProductVariant(sl()));
+  sl.registerLazySingleton(() => DeleteProductVariant(sl()));
+  sl.registerLazySingleton(() => GetProductVariants(sl()));
+  sl.registerLazySingleton(() => DistributeProductStockUseCase(sl()));
+  sl.registerLazySingleton(() => ManageProductVariants(sl()));
+
+  // bloc
+
+  sl.registerFactory(
+    () => ProductVariantBloc(
+      getProductVariants: sl(),
+      createProductVariant: sl(),
+      updateProductVariant: sl(),
+      deleteProductVariant: sl(),
+      manageProductVariants: sl(),
+      distributeProductStockUseCase: sl(),
+    ),
+  );
+
+  // Repository
+  sl.registerLazySingleton<VariantRepository>(
+    () => VariantRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<VariantRemoteDataSource>(
+    () => VariantRemoteDataSourceImpl(client: sl()),
+  );
 }

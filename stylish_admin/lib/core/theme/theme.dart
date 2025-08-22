@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // Primary Color Palette 
+  // Primary Color Palette - Refined for fashion retail
   static const Color primaryDark = Color(0xFF1A1A2E);
   static const Color primaryMedium = Color(0xFF16213E);
   static const Color primaryLight = Color(0xFF0F3460);
@@ -32,7 +31,7 @@ class AppTheme {
   static const Color secondary = Color(0xFFE94560);
   static const Color background = Color(0xFF16213E);
 
-  // Status colors 
+  // Status colors - Enhanced for better readability
   static const Color success = Color(0xFF4CAF50);
   static const Color successLight = Color(0xFF8BC34A);
   static const Color warning = Color(0xFFFFC107);
@@ -42,13 +41,15 @@ class AppTheme {
   // Background Colors
   static const Color backgroundDark = Color(0xFF1A1A2E);
   static const Color backgroundMedium = Color(0xFF16213E);
-  static const Color cardBackground =
-      Color(0xFF1D2951); 
+  static const Color cardBackground = Color(
+    0xFF1D2951,
+  ); // Slightly lighter for better contrast
 
-  // Text Colors 
+  // Text Colors - Refined for fashion readability
   static const Color textPrimary = Colors.white;
-  static const Color textSecondary =
-      Color(0xFFE0E0E0); // Lighter for better readability
+  static const Color textSecondary = Color(
+    0xFFE0E0E0,
+  ); // Lighter for better readability
   static const Color textMuted = Color(0xFFADADAD); // Softer muted color
   static const Color textTertiary =
       Colors.white70; // Increased opacity for better readability
@@ -58,7 +59,7 @@ class AppTheme {
   static Color borderColor = const Color(0xFF1C3879);
   static Color dividerColor = Colors.grey.shade700;
 
-  // Chart Colors 
+  // Chart Colors - Fashion-forward palette
   static Color chartBlue = Color(0xFF4EA8DE);
   static Color chartGreen = Color(0xFF2A9D8F);
   static Color chartPurple = Color(0xFF9381FF);
@@ -71,7 +72,7 @@ class AppTheme {
   static const Color negative = Color(0xFFE71D36);
   static const Color neutral = Color(0xFFBEC5AD);
 
-  // Gradients 
+  // Gradients - More elegant and fashion-forward
   static const LinearGradient backgroundGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -96,7 +97,7 @@ class AppTheme {
     end: Alignment.bottomCenter,
   );
 
-  // Font Sizes 
+  // Font Sizes - Adjusted for cleaner hierarchy
   static const double fontSizeXXSmall = 10.0;
   static const double fontSizeXSmall = 12.0;
   static const double fontSizeSmall = 14.0;
@@ -108,29 +109,29 @@ class AppTheme {
 
   static InputDecorationTheme textFieldDecorationTheme() {
     return InputDecorationTheme(
-     
-      fillColor: primaryLight.withAlpha((0.15*255).round()),
+      // More elegant, fashion-forward styling
+      fillColor: primaryLight.withAlpha((0.15 * 255).round()),
       filled: true,
 
       // Customize border styles
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadiusMedium),
         borderSide: BorderSide(
-          color: primaryLight.withAlpha((0.3*255).round()),
+          color: primaryLight.withAlpha((0.3 * 255).round()),
           width: 1,
         ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadiusMedium),
         borderSide: BorderSide(
-          color: primaryLight.withAlpha((0.3*255).round()),
+          color: primaryLight.withAlpha((0.3 * 255).round()),
           width: 1,
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadiusMedium),
         borderSide: BorderSide(
-          color: accentGold.withAlpha((0.7*255).round()),
+          color: accentGold.withAlpha((0.7 * 255).round()),
           width: 2,
         ),
       ),
@@ -138,10 +139,7 @@ class AppTheme {
       // Error state styling
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadiusMedium),
-        borderSide: BorderSide(
-          color: accentRed,
-          width: 1,
-        ),
+        borderSide: BorderSide(color: accentRed, width: 1),
       ),
 
       // Text and hint styling
@@ -153,9 +151,10 @@ class AppTheme {
     );
   }
 
-  // Text Styles with Google Fonts 
+  // Text Styles with Google Fonts
   static TextStyle headingHuge() {
-    return GoogleFonts.playfairDisplay(
+    return const TextStyle(
+      fontFamily: 'PlayfairDisplay',
       fontSize: fontSizeHuge,
       fontWeight: FontWeight.bold,
       color: textPrimary,
@@ -164,7 +163,8 @@ class AppTheme {
   }
 
   static TextStyle headingLarge() {
-    return GoogleFonts.playfairDisplay(
+    return const TextStyle(
+      fontFamily: 'PlayfairDisplay',
       fontSize: fontSizeXXLarge,
       fontWeight: FontWeight.bold,
       color: textPrimary,
@@ -173,7 +173,8 @@ class AppTheme {
   }
 
   static TextStyle headingMedium() {
-    return GoogleFonts.playfairDisplay(
+    return const TextStyle(
+      fontFamily: 'PlayfairDisplay',
       fontSize: fontSizeXLarge,
       fontWeight: FontWeight.bold,
       color: textPrimary,
@@ -181,7 +182,8 @@ class AppTheme {
   }
 
   static TextStyle subheading() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeLarge,
       fontWeight: FontWeight.w600,
       color: textPrimary,
@@ -190,7 +192,8 @@ class AppTheme {
   }
 
   static TextStyle bodyLarge() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeMedium,
       fontWeight: FontWeight.w400,
       color: textPrimary,
@@ -199,7 +202,8 @@ class AppTheme {
   }
 
   static TextStyle bodyMedium() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeSmall,
       fontWeight: FontWeight.w400,
       color: textPrimary,
@@ -208,7 +212,8 @@ class AppTheme {
   }
 
   static TextStyle bodySmall() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeXSmall,
       fontWeight: FontWeight.w400,
       color: textSecondary,
@@ -217,7 +222,8 @@ class AppTheme {
   }
 
   static TextStyle bodyXSmall() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeXXSmall,
       fontWeight: FontWeight.w400,
       color: textSecondary,
@@ -226,7 +232,8 @@ class AppTheme {
   }
 
   static TextStyle buttonText() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeSmall,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.5,
@@ -235,7 +242,8 @@ class AppTheme {
   }
 
   static TextStyle valueText() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeXLarge,
       fontWeight: FontWeight.bold,
       color: textPrimary,
@@ -243,7 +251,8 @@ class AppTheme {
   }
 
   static TextStyle labelText() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeXSmall,
       fontWeight: FontWeight.w600,
       color: textSecondary,
@@ -253,7 +262,8 @@ class AppTheme {
   }
 
   static TextStyle highlightText() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeMedium,
       fontWeight: FontWeight.w600,
       color: accentGold,
@@ -261,7 +271,7 @@ class AppTheme {
     );
   }
 
-  // Border Radius
+  // Border Radius - More refined for fashion aesthetics
   static const double borderRadiusXSmall = 4.0;
   static const double borderRadiusSmall = 8.0;
   static const double borderRadiusMedium = 12.0;
@@ -269,7 +279,7 @@ class AppTheme {
   static const double borderRadiusXLarge = 24.0;
   static const double borderRadiusCircular = 100.0;
 
-  // Spacing 
+  // Spacing - More options for precise layouts
   static const double spacingXXSmall = 2.0;
   static const double spacingXSmall = 4.0;
   static const double spacingSmall = 8.0;
@@ -283,13 +293,13 @@ class AppTheme {
   static const double elevationMedium = 4.0;
   static const double elevationHigh = 8.0;
 
-  // Card Styles 
+  // Card Styles - More elegant for fashion
   static BoxDecoration cardDecoration = BoxDecoration(
     color: cardBackground,
     borderRadius: BorderRadius.circular(borderRadiusLarge),
     boxShadow: [
       BoxShadow(
-        color: Colors.black.withAlpha((0.2*255).round()),
+        color: Colors.black.withAlpha((0.2 * 255).round()),
         blurRadius: 8,
         offset: const Offset(0, 4),
       ),
@@ -299,10 +309,13 @@ class AppTheme {
   static BoxDecoration premiumCardDecoration = BoxDecoration(
     color: cardBackground,
     borderRadius: BorderRadius.circular(borderRadiusLarge),
-    border: Border.all(color: accentGold.withAlpha((0.3*255).round()), width: 1),
+    border: Border.all(
+      color: accentGold.withAlpha((0.3 * 255).round()),
+      width: 1,
+    ),
     boxShadow: [
       BoxShadow(
-        color: accentGold.withAlpha((0.15*255).round()),
+        color: accentGold.withAlpha((0.15 * 255).round()),
         blurRadius: 8,
         offset: const Offset(0, 4),
       ),
@@ -310,21 +323,21 @@ class AppTheme {
   );
 
   static BoxDecoration statsCardDecoration = BoxDecoration(
-    color: primaryLight.withAlpha((0.15*255).round()),
+    color: primaryLight.withAlpha((0.15 * 255).round()),
     borderRadius: BorderRadius.circular(borderRadiusLarge),
-    border: Border.all(color: primaryLight.withAlpha((0.3*255).round())),
+    border: Border.all(color: primaryLight.withAlpha((0.3 * 255).round())),
     boxShadow: [
       BoxShadow(
-        color: Colors.black.withAlpha((0.1*255).round()),
+        color: Colors.black.withAlpha((0.1 * 255).round()),
         blurRadius: 4,
         offset: const Offset(0, 2),
       ),
     ],
   );
 
-  // Chip Styles 
+  // Chip Styles - More fashion-forward
   static BoxDecoration selectedChipDecoration = BoxDecoration(
-    color: accentGold.withAlpha((0.2*255).round()),
+    color: accentGold.withAlpha((0.2 * 255).round()),
     borderRadius: BorderRadius.circular(borderRadiusCircular),
     border: Border.all(color: accentGold),
   );
@@ -341,7 +354,7 @@ class AppTheme {
     borderRadius: BorderRadius.circular(borderRadiusLarge),
     boxShadow: [
       BoxShadow(
-        color: Colors.black.withAlpha((0.1*255).round()),
+        color: Colors.black.withAlpha((0.1 * 255).round()),
         blurRadius: 8,
         offset: const Offset(0, 4),
       ),
@@ -351,18 +364,18 @@ class AppTheme {
   // Badge styles
   static BoxDecoration badgeDecoration(Color color) {
     return BoxDecoration(
-      color: color.withAlpha((0.2*255).round()),
+      color: color.withAlpha((0.2 * 255).round()),
       borderRadius: BorderRadius.circular(borderRadiusCircular),
-      border: Border.all(color: color.withAlpha((0.5*255).round())),
+      border: Border.all(color: color.withAlpha((0.5 * 255).round())),
     );
   }
 
   // Icon Containers
   static BoxDecoration iconContainerDecoration(Color color) {
     return BoxDecoration(
-      color: color.withAlpha((0.15*255).round()),
+      color: color.withAlpha((0.15 * 255).round()),
       shape: BoxShape.circle,
-      border: Border.all(color: color.withAlpha((0.3*255).round()), width: 1),
+      border: Border.all(color: color.withAlpha((0.3 * 255).round()), width: 1),
     );
   }
 
@@ -441,10 +454,7 @@ class AppTheme {
         thickness: 1,
         space: spacingMedium,
       ),
-      iconTheme: const IconThemeData(
-        color: textSecondary,
-        size: 24,
-      ),
+      iconTheme: const IconThemeData(color: textSecondary, size: 24),
       appBarTheme: AppBarTheme(
         backgroundColor: backgroundDark,
         elevation: 0,
@@ -458,7 +468,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(borderRadiusSmall),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withAlpha((0.2*255).round()),
+              color: Colors.black.withAlpha((0.2 * 255).round()),
               blurRadius: 4,
               offset: const Offset(0, 2),
             ),
@@ -467,10 +477,10 @@ class AppTheme {
         textStyle: bodySmall(),
       ),
       chipTheme: ChipThemeData(
-        backgroundColor: primaryLight.withAlpha((0.15*255).round()),
+        backgroundColor: primaryLight.withAlpha((0.15 * 255).round()),
         disabledColor: Colors.grey.shade800,
-        selectedColor: accentGold.withAlpha((0.2*255).round()),
-        secondarySelectedColor: accentGold.withAlpha((0.2*255).round()),
+        selectedColor: accentGold.withAlpha((0.2 * 255).round()),
+        secondarySelectedColor: accentGold.withAlpha((0.2 * 255).round()),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         labelStyle: bodySmall(),
         secondaryLabelStyle: bodySmall().copyWith(color: accentGold),
@@ -496,7 +506,7 @@ class AppTheme {
         }),
         trackColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return accentGold.withAlpha((0.3*255).round());
+            return accentGold.withAlpha((0.3 * 255).round());
           }
           return Colors.grey.shade700;
         }),
@@ -527,18 +537,21 @@ class AppTheme {
         linearTrackColor: dividerColor,
         circularTrackColor: dividerColor,
       ),
-      fontFamily: GoogleFonts.poppins().fontFamily,
+      fontFamily: 'Poppins',
       textTheme: TextTheme(
         displayLarge: _addNotoEmojiFallback(headingHuge()),
         displayMedium: _addNotoEmojiFallback(headingLarge()),
         displaySmall: _addNotoEmojiFallback(headingMedium()),
         headlineMedium: _addNotoEmojiFallback(subheading()),
         titleLarge: _addNotoEmojiFallback(
-            bodyLarge().copyWith(fontWeight: FontWeight.w600)),
+          bodyLarge().copyWith(fontWeight: FontWeight.w600),
+        ),
         titleMedium: _addNotoEmojiFallback(
-            bodyMedium().copyWith(fontWeight: FontWeight.w600)),
+          bodyMedium().copyWith(fontWeight: FontWeight.w600),
+        ),
         titleSmall: _addNotoEmojiFallback(
-            bodySmall().copyWith(fontWeight: FontWeight.w600)),
+          bodySmall().copyWith(fontWeight: FontWeight.w600),
+        ),
         bodyLarge: _addNotoEmojiFallback(bodyLarge()),
         bodyMedium: _addNotoEmojiFallback(bodyMedium()),
         bodySmall: _addNotoEmojiFallback(bodySmall()),
@@ -552,14 +565,16 @@ class AppTheme {
       // Text selection theme
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: accentGold,
-        selectionColor: accentGold.withAlpha((0.3*255).round()),
+        selectionColor: accentGold.withAlpha((0.3 * 255).round()),
         selectionHandleColor: accentGold,
       ),
 
       // Scrollbar theme
       scrollbarTheme: ScrollbarThemeData(
         thickness: WidgetStateProperty.all(6),
-        thumbColor: WidgetStateProperty.all(primaryLight.withAlpha((0.5*255).round())),
+        thumbColor: WidgetStateProperty.all(
+          primaryLight.withAlpha((0.5 * 255).round()),
+        ),
         radius: const Radius.circular(10),
         minThumbLength: 80,
       ),
@@ -569,7 +584,7 @@ class AppTheme {
         activeTrackColor: accentGold,
         inactiveTrackColor: dividerColor,
         thumbColor: accentGold,
-        overlayColor: accentGold.withAlpha((0.2*255).round()),
+        overlayColor: accentGold.withAlpha((0.2 * 255).round()),
         valueIndicatorColor: primaryMedium,
         valueIndicatorTextStyle: bodySmall(),
       ),
@@ -613,21 +628,21 @@ class AppTheme {
     );
   }
 
-
+  // Fashion-specific theme components
   static BoxDecoration fashionCategoryDecoration(Color color) {
     return BoxDecoration(
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          color.withAlpha((0.7*255).round()),
-          color.withAlpha((0.3*255).round()),
+          color.withAlpha((0.7 * 255).round()),
+          color.withAlpha((0.3 * 255).round()),
         ],
       ),
       borderRadius: BorderRadius.circular(borderRadiusLarge),
       boxShadow: [
         BoxShadow(
-          color: color.withAlpha((0.2*255).round()),
+          color: color.withAlpha((0.2 * 255).round()),
           blurRadius: 8,
           offset: const Offset(0, 4),
         ),
@@ -641,7 +656,7 @@ class AppTheme {
   );
   static BoxDecoration seasonalTagDecoration(Color color) {
     return BoxDecoration(
-      color: color.withAlpha((0.2*255).round()),
+      color: color.withAlpha((0.2 * 255).round()),
       borderRadius: BorderRadius.circular(borderRadiusXSmall),
       border: Border.all(color: color),
     );
@@ -652,19 +667,23 @@ class AppTheme {
     borderRadius: BorderRadius.circular(borderRadiusLarge),
     boxShadow: [
       BoxShadow(
-        color: accentGold.withAlpha((0.1*255).round()),
+        color: accentGold.withAlpha((0.1 * 255).round()),
         blurRadius: 8,
         offset: const Offset(0, 4),
       ),
     ],
-    border: Border.all(color: accentGold.withAlpha((0.3*255).round()), width: 1),
+    border: Border.all(
+      color: accentGold.withAlpha((0.3 * 255).round()),
+      width: 1,
+    ),
   );
   static BoxDecoration discountBadgeDecoration = BoxDecoration(
     color: accentRed,
     borderRadius: BorderRadius.circular(borderRadiusCircular),
   );
   static TextStyle discountBadgeText() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeXXSmall,
       fontWeight: FontWeight.bold,
       color: Colors.white,
@@ -672,7 +691,8 @@ class AppTheme {
   }
 
   static TextStyle productPriceText() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeMedium,
       fontWeight: FontWeight.bold,
       color: accentGold,
@@ -680,7 +700,8 @@ class AppTheme {
   }
 
   static TextStyle productOldPriceText() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeXSmall,
       fontWeight: FontWeight.normal,
       color: textMuted,
@@ -689,7 +710,8 @@ class AppTheme {
   }
 
   static TextStyle categoryTitleText() {
-    return GoogleFonts.playfairDisplay(
+    return const TextStyle(
+      fontFamily: 'PlayfairDisplay',
       fontSize: fontSizeLarge,
       fontWeight: FontWeight.bold,
       color: textPrimary,
@@ -698,7 +720,8 @@ class AppTheme {
   }
 
   static TextStyle brandNameText() {
-    return GoogleFonts.poppins(
+    return const TextStyle(
+      fontFamily: 'Poppins',
       fontSize: fontSizeXSmall,
       fontWeight: FontWeight.w600,
       color: textSecondary,
@@ -707,13 +730,10 @@ class AppTheme {
     );
   }
 
-// Emoji fallback
+  // Emoji fallback
   static TextStyle _addNotoEmojiFallback(TextStyle baseStyle) {
     return baseStyle.copyWith(
-      fontFamilyFallback: [
-        'NotoColorEmoji',
-        'NotoSans',
-      ],
+      fontFamilyFallback: ['NotoColorEmoji', 'NotoSans'],
     );
   }
 }

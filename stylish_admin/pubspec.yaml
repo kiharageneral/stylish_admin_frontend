@@ -18,7 +18,6 @@ dependencies:
   get_it: ^8.0.3
   shared_preferences: ^2.5.2
   flutter_bloc: ^9.0.0
-  google_fonts: 
 
   dartz: ^0.10.1
   internet_connection_checker: ^3.0.1
