@@ -4,7 +4,9 @@ import 'package:stylish_admin/features/auth/domain/entities/user_entity.dart';
 import 'package:stylish_admin/features/auth/presentation/pages/login_page.dart';
 import 'package:stylish_admin/features/auth/presentation/pages/manage_account_page.dart';
 import 'package:stylish_admin/features/category/presentation/pages/categories_page.dart';
-
+import 'package:stylish_admin/features/chat/presentation/pages/chat_analytics_page.dart';
+import 'package:stylish_admin/features/chat/presentation/pages/chat_dashboard_page.dart';
+import 'package:stylish_admin/features/chat/presentation/pages/chat_sesson_detail_page.dart';
 import 'package:stylish_admin/features/products/domain/entities/products_entity.dart';
 import 'package:stylish_admin/features/products/presentation/pages/product_details/product_details_page.dart';
 import 'package:stylish_admin/features/products/presentation/pages/product_page/products_page.dart';
@@ -48,7 +50,18 @@ class DashboardRouter {
         final user = settings.arguments as UserEntity;
         return _buildRoute(ManageAccountPage(user: user), settings);
 
-    
+      case RouteNames.chat:
+        return _buildRoute(ChatDashboardPage(), settings);
+
+      case RouteNames.chatAnalytics:
+        return _buildRoute(ChatAnalyticsPage(), settings);
+
+      case RouteNames.chatSession:
+        final args = settings.arguments as Map<String, dynamic>?;
+        return _buildRoute(
+          ChatSessonDetailPage(sessionId: args?['sessionId']),
+          settings,
+        );
       default:
         return _buildRoute(Center(child: Text("No Pages")), settings);
     }

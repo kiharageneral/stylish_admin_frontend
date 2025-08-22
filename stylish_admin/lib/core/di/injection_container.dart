@@ -23,7 +23,10 @@ import 'package:stylish_admin/features/category/domain/usecases/delete_categorie
 import 'package:stylish_admin/features/category/domain/usecases/get_categories.dart';
 import 'package:stylish_admin/features/category/domain/usecases/update_categories.dart';
 import 'package:stylish_admin/features/category/presentation/bloc/category_bloc.dart';
-
+import 'package:stylish_admin/features/chat/data/datasources/chat_remoted_datasource.dart';
+import 'package:stylish_admin/features/chat/data/repositories/chat_repository_impl.dart';
+import 'package:stylish_admin/features/chat/domain/repository/chat_repository.dart';
+import 'package:stylish_admin/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:stylish_admin/features/products/data/datasources/product_remote_datasource.dart';
 import 'package:stylish_admin/features/products/data/repositories/product_repository_impl.dart';
 import 'package:stylish_admin/features/products/domain/repositories/product_repository.dart';
@@ -42,7 +45,7 @@ import 'package:stylish_admin/features/variations/domain/usecases/manage_product
 import 'package:stylish_admin/features/variations/domain/usecases/update_product_variants.dart';
 import 'package:stylish_admin/features/variations/presentation/bloc/product_variant_bloc.dart';
 
-
+import '../../features/chat/domain/usecases/chat_usecases.dart';
 
 final sl = GetIt.instance;
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -58,7 +61,8 @@ Future<void> init() async {
   _initCategories();
   // Product variants
   _initProductVariantsFeature();
-
+  // chat feature
+  _initChat();
 }
 
 Future<void> _initCoreServices() async {
@@ -242,5 +246,53 @@ void _initProductVariantsFeature() {
   // Data sources
   sl.registerLazySingleton<VariantRemoteDataSource>(
     () => VariantRemoteDataSourceImpl(client: sl()),
+  );
+}
+
+void _initChat() {
+  // Bloc
+  sl.registerFactory(
+    () => ChatBloc(
+      getChatHealthUsecase: sl<GetChatHealthUsecase>(),
+      getChatSessionUsecase: sl<GetChatSessionUsecase>(),
+      getSessionMessagesUsecase: sl<GetSessionMessagesUsecase>(),
+      createChatSessionUsecase: sl<CreateChatSessionUsecase>(),
+      sendChatFeedbackUsecase: sl<SendChatFeedbackUsecase>(),
+      sendChatQueryUseCase: sl<SendChatQueryUseCase>(),
+      getChatAnalyticsUsecase: sl<GetChatAnalyticsUsecase>(),
+    ),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<ChatRemoteDatasource>(
+    () => ChatRemoteDataSourceImpl(client: sl<ApiClient>()),
+  );
+
+  // Repository
+  sl.registerLazySingleton<ChatRepository>(
+    () => ChatRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()),
+  );
+
+  // Usecases
+  sl.registerLazySingleton<SendChatQueryUseCase>(
+    () => SendChatQueryUseCase(sl()),
+  );
+  sl.registerLazySingleton<CreateChatSessionUsecase>(
+    () => CreateChatSessionUsecase(sl()),
+  );
+  sl.registerLazySingleton<GetChatAnalyticsUsecase>(
+    () => GetChatAnalyticsUsecase(sl()),
+  );
+  sl.registerLazySingleton<GetChatHealthUsecase>(
+    () => GetChatHealthUsecase(sl()),
+  );
+  sl.registerLazySingleton<GetSessionMessagesUsecase>(
+    () => GetSessionMessagesUsecase(sl()),
+  );
+  sl.registerLazySingleton<SendChatFeedbackUsecase>(
+    () => SendChatFeedbackUsecase(sl()),
+  );
+  sl.registerLazySingleton<GetChatSessionUsecase>(
+    () => GetChatSessionUsecase(sl()),
   );
 }
